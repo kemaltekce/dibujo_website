@@ -1,0 +1,204 @@
+body {
+  font-family: 'Inter', sans-serif !important;
+  background-color: #fffefc;
+  max-width: 705px;
+  margin: auto;
+  color: #454545;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+p {
+  margin: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #454545;
+}
+
+input {
+  border: none;
+  background: none;
+  flex: auto;
+  outline: none;
+}
+
+button {
+  border: none;
+}
+
+button:focus {
+  background-color: #A0A9B1;
+}
+
+@media screen and (max-width: 500px) {
+  .small-screen-no {
+     display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .image {
+     display: none;
+  }
+
+  .alternative-image {
+    display: flex !important;
+ }
+}
+
+/* component style */
+
+.box {
+  font-size: 30px;
+  background-color: #f9f5f1;
+  color: #454545;
+  margin: 24px;
+  padding: 32px;
+  border-radius: 20px;
+}
+
+.signup {
+  display: flex;
+  background-color: #fffefc;
+  padding: 5px;
+  border-radius: 7px;
+}
+
+.highlight {
+  background-color: #f9f5f1;
+  color: #454545;
+  width: fit-content;
+}
+
+.black {
+  background-color: #454545;
+  color: #fffefc;
+}
+
+.orange {
+  background-color: #E88439;
+  color: #fffefc;
+}
+
+.white {
+  background-color: #fffefc;
+  border: #E88439 solid 1px;
+  color: #454545;
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 24px;
+}
+
+.nav .sections a {
+  margin: 0px 5px;
+}
+
+.nav .sections a:hover {
+  color: #E88439;
+}
+
+.nav .home {
+  margin-right: 20px;
+}
+
+.image-feature {
+  overflow: hidden;
+}
+
+image {
+  display: flex;
+}
+
+.alternative-image {
+  display: none;
+}
+
+/* paddings and margins */
+
+.m-top {
+  margin-top: 24px;
+}
+
+.m-bottom {
+  margin-bottom: 24px;
+}
+
+.m-tb-8 {
+  margin: 8px 0px;
+}
+
+.p-lr-8 {
+  padding: 0px 8px;
+}
+
+/* font style */
+
+.light {
+  font-weight: 100;
+}
+
+.bold {
+  font-weight: 500;
+}
+
+.medium {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: 14px !important;
+}
+
+.text-medium {
+  font-size: 20px;
+}
+
+.header {
+  margin: 24px;
+  font-size: 30px;
+  color: #454545;
+  padding: 24px 0px;
+}
+
+.grey {
+  color: #A0A9B1;
+}
+
+/* button style */
+
+.button {
+  padding: 10px;
+  border-radius: 7px;
+  font-size: 18px;
+  justify-content: center;
+  display: flex;
+}
+
+.orange a {
+  color: #fffefc;
+}
+
+.black a {
+  color: #fffefc;
+}
+
+.white a {
+  color: #454545;
+}
+
+.button-small {
+  padding: 7px 10px !important;
+}

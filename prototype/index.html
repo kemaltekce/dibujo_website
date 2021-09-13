@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" spellcheck="false">
+<head>
+  <title>dibujo - prototype</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue2-touch-events"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/prototype.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="clearfix">
+  <div id="app" v-touch:swipe.right="swipeNavOrSidepage" v-touch:swipe.left="swipeNavOrSidepage">
+    <div class="navigation-container" v-bind:class="{ 'navigation-mobile-active': displayNav, 'mobile': mobileVersion }">
+      <div class="navigation" v-if=displayNav>
+        <div
+          class="button"
+          v-for="navpage in pages"
+          :class="{ highlighted: page.id === navpage.id }"
+          :key="'nav-' + navpage.id"
+          :ref="'nav-' + navpage.id"
+          @click="loadPage(navpage.id)">{{ navpage.title }}</div>
+        <div
+          class="button"
+          @click="addNewPage"><span class="plus">+</span> add new page</div>
+      </div>
+    </div>
+    <page
+      :title="page.title" :collections="page.collections" :styles="styles"
+      :navarrow="navarrow" :pagetype="'page'"
+      :key="page.id" :ref="'page-' + page.id"
+      v-on:edit-page-title="editPageTitle"
+      v-on:edit-bullet-text="editBulletText"
+      v-on:change-bullet-style="changeBulletStyle"
+      v-on:add-bullet="addBullet"
+      v-on:remove-bullet="removeBullet"
+      v-on:remove-bullet-style="removeStyle"
+      v-on:remove-collection="removeCollection"
+      v-on:add-collection="addCollection"
+      v-on:change-pagenav-visibility="changePageNavVisibility"
+      v-on:iterate-page="iteratePage(page.id)"
+      v-on:as-sidebar="asSidebar"
+      v-on:close-sidebar="closeSidebar"
+      v-on:change-sidepage-visibility="changeSidepageVisibility"></page>
+    <div v-bind:class="{ 'sidepage-mobile-active': sidepageMobileActive, 'mobile': mobileVersion }" class="sidepage-container" v-if=sidepage.id>
+      <page
+        v-if=sidepage.id
+        class="sidepage"
+        :style="{ width: sidepagewidth + 'px'}"
+        :title="sidepage.title" :collections="sidepage.collections" :styles="styles"
+        :navarrow="navarrow" :pagetype="'sidepage'"
+        :ref="'sidepage-' + sidepage.id"
+        v-on:edit-page-title="editPageTitle"
+        v-on:edit-bullet-text="editBulletText"
+        v-on:change-bullet-style="changeBulletStyle"
+        v-on:add-bullet="addBullet"
+        v-on:remove-bullet="removeBullet"
+        v-on:remove-bullet-style="removeStyle"
+        v-on:remove-collection="removeCollection"
+        v-on:add-collection="addCollection"
+        v-on:change-pagenav-visibility="changePageNavVisibility"
+        v-on:iterate-page="iteratePage(page.id)"
+        v-on:close-sidebar="closeSidebar"
+        v-on:change-sidepage-visibility="changeSidepageVisibility"></page>
+    </div>
+  </div>
+</body>
+<script src="js/vue_bullet.js"></script>
+<script src="js/vue_collection.js"></script>
+<script src="js/vue_page.js"></script>
+<script src="js/vue.js"></script>
+</html>
