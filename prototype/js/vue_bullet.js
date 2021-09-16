@@ -15,6 +15,7 @@ Vue.component('bullet', {
         @keydown.enter.prevent.stop="endEdit"
         @keydown.delete="removeBullet"
         @keyup.space="executeShortCmd"
+        @keydown.229="executeShortCmd"
         @keydown.tab.prevent="executeShortCmd"
         @keydown.alt.188.capture.prevent.stop="iteratePage"></div>
     </div>
