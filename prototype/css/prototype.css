@@ -33,7 +33,8 @@ body {
   bottom: 0;
   top: 0;
   background-color: #f9f5f1;
-  width: -webkit-fill-available;
+  /* width: -webkit-fill-available; */
+  width: 100%;
   z-index: 1;
 }
 
@@ -56,14 +57,16 @@ body {
 
 .sidepage-container.mobile {
   padding: 10px;
-  right: -97vw;
+  /* right: -97vw; */
+  right: -101%;
   transition: right 1s;
   border-radius: 10px;
   box-shadow: 0px 0px 7px #d0c8c0;
 }
 
 .sidepage-mobile-active {
-  right: -3vw !important;
+  /* right: -3vw !important; */
+  right: -5% !important;
 }
 
 .mobile > .sidepage {
@@ -264,7 +267,9 @@ body {
 .bullet-text {
   display: flex;
   flex: 1 1 0px;
-  padding-left: 4px
+  padding-left: 4px;
+  min-height: 25px;
+  display: inline;
 }
 
 .bullet-style + .bullet-text {

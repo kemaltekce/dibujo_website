@@ -72,6 +72,7 @@ button:focus {
   background-color: #f9f5f1;
   color: #454545;
   width: fit-content;
+  width: -moz-fit-content;
 }
 
 .black {
