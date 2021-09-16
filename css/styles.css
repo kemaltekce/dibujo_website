@@ -143,19 +143,19 @@ image {
 /* font style */
 
 .light {
-  font-weight: 100;
+  font-weight: 100 !important;
 }
 
 .bold {
-  font-weight: 500;
+  font-weight: 500 !important;
 }
 
 .medium {
-  font-weight: 300;
+  font-weight: 300 !important;
 }
 
 .regular {
-  font-weight: 400;
+  font-weight: 400 !important;
 }
 
 .text-small {

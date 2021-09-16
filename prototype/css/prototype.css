@@ -38,7 +38,8 @@ body {
 }
 
 .mobile > .navigation {
-  padding: 50px;
+  padding-left: 45vw;
+  padding-top: 25px;
 }
 
 .navigation-container.mobile {
@@ -46,26 +47,28 @@ body {
   transition: left 1s;
   border-radius: 10px;
   box-shadow:  0px 0px 7px #d0c8c0;
+  overflow: hidden;
 }
 
 .navigation-mobile-active {
-  left: -2vw !important;
+  left: -40vw !important;
 }
 
 .sidepage-container.mobile {
   padding: 10px;
-  right: -99vw;
+  right: -97vw;
   transition: right 1s;
   border-radius: 10px;
   box-shadow: 0px 0px 7px #d0c8c0;
 }
 
 .sidepage-mobile-active {
-  right: -2vw !important;
+  right: -3vw !important;
 }
 
 .mobile > .sidepage {
   position: absolute;
+  left: 10px;
 }
 
 /* navigation style */
@@ -103,12 +106,12 @@ body {
 /* page styles */
 
 .page {
-  margin: 10px 40px;
+  margin: 10px 15px;
   flex: 1;
 }
 
 .pagetitle {
-  font-size: 48px;
+  font-size: 40px;
   margin: 30px 0px 0px 0px;
   position: relative;
   overflow: hidden;
@@ -195,6 +198,7 @@ body {
 .bullet {
   display: flex;
   align-items: flex-start;
+  padding: 2px 0px;
 }
 
 .bullet-style {
@@ -206,7 +210,7 @@ body {
 }
 
 .bullet-style-todo {
-  font-size: 2px;
+  font-size: 7px;
   /* transform: translateY(95%); */
 }
 
@@ -242,13 +246,13 @@ body {
 }
 
 #h1 > .bullet-text {
-  font-size: 36px;
+  font-size: 30px;
   font-weight: 400;
   padding: 30px 4px 10px;
 }
 
 #h2 > .bullet-text {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 500;
   padding: 15px 5px 5px;
 }
