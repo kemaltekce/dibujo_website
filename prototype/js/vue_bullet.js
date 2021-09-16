@@ -15,7 +15,8 @@ Vue.component('bullet', {
         @keydown.enter.prevent.stop="endEdit"
         @keydown.delete="removeBullet"
         @keyup.space="executeShortCmd"
-        @keydown.229="executeShortCmd"
+        @keyup.229="executeShortCmd"
+        @keyup.32="executeShortCmd"
         @keydown.tab.prevent="executeShortCmd"
         @keydown.alt.188.capture.prevent.stop="iteratePage"></div>
     </div>
@@ -128,7 +129,8 @@ Vue.component('bullet', {
       var currentText = event.target.innerText
       var shortCmd = currentText.slice(0, 2)
       // event.which === 229 added because space is not recognized on android phone
-      if ((event.code === 'Space' || event.which === 229) && window.getSelection()['anchorOffset'] === 2) {
+      // event.which === 32 for firefox on mobile
+      if ((event.code === 'Space' || event.which === 229 || event.which === 32) && window.getSelection()['anchorOffset'] === 2) {
         if (/\s{2}/.test(shortCmd)) {
           this.keepTextWithoutCmd(event, this.bullet, currentText, /\s{2}/)
           this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: 'tab'})
