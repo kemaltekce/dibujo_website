@@ -23,6 +23,26 @@ var app = new Vue({
       pages: [
         {
           id: this.uuid(),
+          title: '🎉 Welcome',
+          collections: [
+            {
+              id: this.uuid(),
+              position: 0,
+              bullets: [
+                {id: this.uuid(), text: 'Welcome to dibujo', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'Glad you stopped by.', position: 1, style: 'h2'},
+                {id: this.uuid(), text: 'This current version is only a prototype. Test. Tinker. Explore.', position: 2, style: undefined},
+                {id: this.uuid(), text: 'Documentation', position: 3, style: 'h2'},
+                {id: this.uuid(), text: "On the '📚 dibujo insights' page you can find a documentation on how to use dibujo, it's quick commands and keyboard shortcuts. Feel free to check it out.", position: 4, style: undefined},
+                {id: this.uuid(), text: 'Explore', position: 5, style: 'h2'},
+                {id: this.uuid(), text: 'The other pages here are example pages which contain collections and bullets for you to explore. It is meant as an example on how you might use dibujo.', position: 6, style: undefined},
+                {id: this.uuid(), text: 'Explore, type, tinker with it.', position: 7, style: undefined},
+              ]
+            },
+          ],
+        },
+        {
+          id: this.uuid(),
           title: '🍉 Monthly Log',
           collections: [
             {
@@ -148,7 +168,7 @@ var app = new Vue({
               id: this.uuid(),
               position: 1,
               bullets: [
-                {id: this.uuid(), text: '2021 November', position: 0, style: 'h1'},
+              {id: this.uuid(), text: '2021 November', position: 0, style: 'h1'},
                 {id: this.uuid(), text: '3 Tkc: dibujo project release', position: 1, style: 'todo'},
                 {id: this.uuid(), text: '11 Lean Learning: First website draft', position: 2, style: 'todo'},
                 {id: this.uuid(), text: '7-13 vacation trip', position: 3, style: 'note'}
@@ -204,6 +224,135 @@ var app = new Vue({
                 {id: this.uuid(), text: 'Read a Montessori book', position: 4, style: 'note'},
                 {id: this.uuid(), text: 'Write daily on medium', position: 5, style: 'note'},
                 {id: this.uuid(), text: 'More time with family', position: 6, style: 'note'}
+              ]
+            },
+          ],
+        },
+      {
+          id: this.uuid(),
+          title: '📚 dibujo insights',
+          collections: [
+            {
+              id: this.uuid(),
+              position: 0,
+              bullets: [
+                {id: this.uuid(), text: 'This is the dibujo documentation. Here you can find more information and insights on how to use dibujo. How to create bullets, change bullets styles, add collections and many more.', position: 0, style: undefined},
+                {id: this.uuid(), text: 'Here a short list of the documentation content:', position: 1, style: 'h2'},
+                {id: this.uuid(), text: 'components in dibujo', position: 2, style: 'note'},
+                {id: this.uuid(), text: 'spaces in dibujo', position: 3, style: 'note'},
+                {id: this.uuid(), text: 'bullets', position: 4, style: 'note'},
+                {id: this.uuid(), text: 'bullet styles. add, change, remove.', position: 5, style: 'note'},
+                {id: this.uuid(), text: 'collections. how to add them.', position: 6, style: 'note'},
+                {id: this.uuid(), text: 'page', position: 7, style: 'note'},
+                {id: this.uuid(), text: 'navigation', position: 8, style: 'note'},
+                {id: this.uuid(), text: 'sidebar', position: 9, style: 'note'},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 1,
+              bullets: [
+                {id: this.uuid(), text: 'components in dibujo', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'Dibujo has three components and three spaces you can use.', position: 1, style: undefined},
+                {id: this.uuid(), text: 'The three components are bullets, collections, and pages.', position: 2, style: undefined},
+                {id: this.uuid(), text: "Bullets are used to take notes, define todo's, check off things that are done, and reflect on open tasks. Bullets can have different styles.", position: 3, style: undefined},
+                {id: this.uuid(), text: "Collections are collections of bullets. You can have a collection for each day, week, or month with the respective bullets in it. You can have collections for projects or ideas as well.", position: 4, style: undefined},
+                {id: this.uuid(), text: "Pages are collections of collections. For example, a page can hold all your daily collections and within these collections are your daily todo's and notes.", position: 5, style: undefined},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 2,
+              bullets: [
+                {id: this.uuid(), text: 'spaces in dibujo', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'Dibujo has three components and three spaces you can use. The three spaces are the main page, navigation, and sidebar.', position: 1, style: undefined},
+                {id: this.uuid(), text: 'The main page is the current page you have open.', position: 2, style: undefined},
+                {id: this.uuid(), text: "The navigation helps you navigate between pages.", position: 3, style: undefined},
+                {id: this.uuid(), text: "The sidebar helps you open a second page on the side of the main page. Its purpose is to allow you to reflect and plan more intentionally without constantly switching between pages.", position: 4, style: undefined},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 3,
+              bullets: [
+                {id: this.uuid(), text: 'bullets', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'In dibujo you can create bullets just by going into an existing bullet and pressing "enter".', position: 1, style: undefined},
+                {id: this.uuid(), text: 'Remove bullets with the "delete" key.', position: 2, style: undefined},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 4,
+              bullets: [
+                {id: this.uuid(), text: 'bullet styles', position: 0, style: 'h1'},
+                {id: this.uuid(), text: "The different bullet styles are used to plan your todo's, take notes, and check off things that are done and reflect on open tasks at the end of the day - migrate or plan for future.", position: 1, style: undefined},
+                {id: this.uuid(), text: 'To learn more about the meaning of each bullet, check out the bullet journal method by Ryder Carroll.', position: 2, style: undefined},
+                {id: this.uuid(), text: 'add or change bullet style', position: 3, style: 'h2'},
+                {id: this.uuid(), text: 'If you wish to change the bullet style, there are multiple ways to do so. You can use commands with "/" and press enter to change the bullet style. Type the command into the bullet you want to change and just press enter. Here is a list with possible commands:', position: 4, style: undefined},
+                {id: this.uuid(), text: '/todo', position: 5, style: 'note'},
+                {id: this.uuid(), text: '/done', position: 6, style: 'note'},
+                {id: this.uuid(), text: '/note', position: 7, style: 'note'},
+                {id: this.uuid(), text: '/migrate', position: 8, style: 'note'},
+                {id: this.uuid(), text: '/future', position: 9, style: 'note'},
+                {id: this.uuid(), text: '/empty', position: 10, style: 'note'},
+                {id: this.uuid(), text: '/h1', position: 11, style: 'note'},
+                {id: this.uuid(), text: '/h2', position: 12, style: 'note'},
+                {id: this.uuid(), text: 'Another method you can use to change the bullet style is at the beginning of each bullet. If you add a symbol at the beginning of a bullet and press "space", you will change the bullet style. Here a list of possible symbols:', position: 13, style: undefined},
+                {id: this.uuid(), text: '.', position: 14, style: 'note'},
+                {id: this.uuid(), text: 'x', position: 15, style: 'note'},
+                {id: this.uuid(), text: '-', position: 16, style: 'note'},
+                {id: this.uuid(), text: '>', position: 17, style: 'note'},
+                {id: this.uuid(), text: '<', position: 18, style: 'note'},
+                {id: this.uuid(), text: 'remove bullet style', position: 19, style: 'h2'},
+                {id: this.uuid(), text: 'To remove a bullet style, just go to the beginning of a bullet and press the "delete" key.', position: 20, style: undefined},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 5,
+              bullets: [
+                {id: this.uuid(), text: 'collection', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'You can add a new collection to the top by pressing the "+" button at the top. If you want to add collections somewhere else, for example between two collections you can use another command. Type in the command and press enter to add a new collection above or below the current collection you are in.', position: 1, style: undefined},
+                {id: this.uuid(), text: '/newcollup', position: 2, style: 'note'},
+                {id: this.uuid(), text: '/newcolldown', position: 3, style: 'note'},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 6,
+              bullets: [
+                {id: this.uuid(), text: 'page', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'add pages', position: 1, style: 'h2'},
+                {id: this.uuid(), text: 'You can create new pages with the "+ add new page" button in the navigation.', position: 2, style: undefined},
+                {id: this.uuid(), text: 'switch between pages', position: 3, style: 'h2'},
+                {id: this.uuid(), text: 'You can of course switch between pages by using the navigation.', position: 4, style: undefined},
+                {id: this.uuid(), text: "In case you don't want to use the navigation, you can also use the keyboard shortcut 'alt + <'.", position: 5, style: undefined},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 7,
+              bullets: [
+                {id: this.uuid(), text: 'navigation', position: 0, style: 'h1'},
+                {id: this.uuid(), text: "You can use the button at the top to change the visibility of the navigation. If you don't want to press any buttons and like controlling it with your keyboard, use the command below and press 'enter' to change the visibility of the navigation", position: 1, style: undefined},
+                {id: this.uuid(), text: '/nav', position: 2, style: 'note'},
+                {id: this.uuid(), text: 'mobile', position: 3, style: 'h2'},
+                {id: this.uuid(), text: 'On mobile, you can swipe the navigation in and out from left to right.', position: 4, style: undefined},
+              ]
+            },
+            {
+              id: this.uuid(),
+              position: 8,
+              bullets: [
+                {id: this.uuid(), text: 'sidebar', position: 0, style: 'h1'},
+                {id: this.uuid(), text: 'If you do not like, pressing buttons you can control the sidebar with your keyboard too. Just type in the command below into any bullet and press "enter". ', position: 1, style: undefined},
+                {id: this.uuid(), text: '/sidepage', position: 2, style: 'note'},
+                {id: this.uuid(), text: 'I know it is confusing to call the command "sidepage" and not "sidebar". In the first iteration, it was called "sidepage". I have to change that.', position: 3, style: undefined},
+                {id: this.uuid(), text: 'To close the sidebar, press the "close sidebar" button or type in the command and press "enter" again.', position: 4, style: undefined},
+                {id: this.uuid(), text: 'mobile', position: 5, style: 'h2'},
+                {id: this.uuid(), text: 'Because of the limited screen space on mobile, it is difficult to divide the screen into the main page and sidebar. Therefore, you have the ability to swipe in the sidebar from the right on mobile.', position: 6, style: undefined},
+                {id: this.uuid(), text: 'Once you press the "as sidebar" button, you will see a border appearing on the right. This is the border of the sidebar. The border tells you that the sidebar is ready to be swiped in.', position: 7, style: undefined},
+                {id: this.uuid(), text: 'After using the sidebar you can swipe it away or close it completely by pressing the  "close sidebar" button.', position: 8, style: undefined},
               ]
             },
           ],
