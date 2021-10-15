@@ -48,8 +48,9 @@ Vue.component('bullet', {
         // tab is not an actual text we removed
         offset = window.getSelection()['anchorOffset']
       } else if (cmd instanceof RegExp) {
-        // regex is used for short cmd. The short cmd are all 2 elements long
-        offset = window.getSelection()['anchorOffset'] - 2
+        // regex is used for short cmd.
+        var matches = text.match(cmd)
+        offset = window.getSelection()['anchorOffset'] - matches[0].length
       } else {
         // adjust offset to match offset without cmd
         offset = window.getSelection()['anchorOffset'] - cmd.length
@@ -128,9 +129,11 @@ Vue.component('bullet', {
     executeShortCmd(event) {
       var currentText = event.target.innerText
       var shortCmd = currentText.slice(0, 2)
+      var spaceEvent = event.code === 'Space' || event.which === 229 || event.which === 32
       // event.which === 229 added because space is not recognized on android phone
       // event.which === 32 for firefox on mobile
-      if ((event.code === 'Space' || event.which === 229 || event.which === 32) && window.getSelection()['anchorOffset'] === 2) {
+      // short comments with one element. two if you include the space
+      if (spaceEvent && window.getSelection()['anchorOffset'] === 2) {
         if (/\s{2}/.test(shortCmd)) {
           this.keepTextWithoutCmd(event, this.bullet, currentText, /\s{2}/)
           this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: 'tab'})
@@ -149,6 +152,16 @@ Vue.component('bullet', {
         } else if (/-\s{1}/.test(shortCmd)) {
           this.keepTextWithoutCmd(event, this.bullet, currentText, /-\s{1}/)
           this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: 'note'})
+        } else if (/#\s{1}/.test(shortCmd)) {
+          this.keepTextWithoutCmd(event, this.bullet, currentText, /#\s{1}/)
+          this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: 'h1'})
+        }
+      // short comments with two element. three if you include the space
+      } else if (spaceEvent && window.getSelection()['anchorOffset'] === 3) {
+        shortCmd = currentText.slice(0, 3)
+        if (/##\s{1}/.test(shortCmd)) {
+          this.keepTextWithoutCmd(event, this.bullet, currentText, /##\s{1}/)
+          this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: 'h2'})
         }
       }
       if (this.bullet.style === undefined && event.code === 'Tab') {

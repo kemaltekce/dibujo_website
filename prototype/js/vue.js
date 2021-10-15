@@ -303,8 +303,10 @@ var app = new Vue({
                 {id: this.uuid(), text: '-', position: 16, style: 'note'},
                 {id: this.uuid(), text: '>', position: 17, style: 'note'},
                 {id: this.uuid(), text: '<', position: 18, style: 'note'},
-                {id: this.uuid(), text: 'remove bullet style', position: 19, style: 'h2'},
-                {id: this.uuid(), text: 'To remove a bullet style, just go to the beginning of a bullet and press the "delete" key.', position: 20, style: undefined},
+                {id: this.uuid(), text: '#', position: 19, style: 'note'},
+                {id: this.uuid(), text: '##', position: 20, style: 'note'},
+                {id: this.uuid(), text: 'remove bullet style', position: 21, style: 'h2'},
+                {id: this.uuid(), text: 'To remove a bullet style, just go to the beginning of a bullet and press the "delete" key.', position: 22, style: undefined},
               ]
             },
             {
