@@ -7,6 +7,7 @@ var app = new Vue({
       sidepage: {},
       sidepagewidth: 0,
       sidepageMobileActive: false,
+      allowNavSidepageSwipe: true,
       styles: {
         todo: {content: '<i class="fas fa-circle"></i>', style: 'bullet-style-todo'},
         done: {content: '<i class="fas fa-times"></i>', style: 'bullet-style-done'},
@@ -388,8 +389,11 @@ var app = new Vue({
     this.adjustPageWidth()
   },
   methods: {
+    startTouch(event) {
+      this.allowNavSidepageSwipe = !(event.target.className === 'cmd')
+    },
     swipeNavOrSidepage(event) {
-      if (this.mobileVersion === true) {
+      if ((this.mobileVersion === true) && (this.allowNavSidepageSwipe === true)) {
         if (event === 'right' && this.displayNav === false && this.sidepageMobileActive === false) {
           this.changePageNavVisibility()
         } else if (event === 'left' && this.displayNav === true) {
@@ -400,6 +404,7 @@ var app = new Vue({
           this.sidepageMobileActive = false
         }
       }
+      this.allowNavSidepageSwipe = true
     },
     uuid() {
       return Math.random().toString(16).slice(2)},

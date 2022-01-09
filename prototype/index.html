@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body class="clearfix">
-  <div id="app" v-touch:swipe.right="swipeNavOrSidepage" v-touch:swipe.left="swipeNavOrSidepage">
+  <div id="app" v-touch:start="startTouch" v-touch:swipe.right="swipeNavOrSidepage" v-touch:swipe.left="swipeNavOrSidepage">
     <div class="navigation-container" v-bind:class="{ 'navigation-mobile-active': displayNav, 'mobile': mobileVersion }">
       <div class="navigation" v-if=displayNav>
         <div
