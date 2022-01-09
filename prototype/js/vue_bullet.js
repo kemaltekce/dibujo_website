@@ -9,20 +9,100 @@ Vue.component('bullet', {
         class="bullet-text"
         contenteditable="true"
         v-text="bullet.text"
+        @focus="activateEditMode"
         @blur="edit"
         @keydown.up="moveUp"
         @keydown.down="moveDown"
         @keydown.enter.prevent.stop="endEdit"
         @keydown.delete="removeBullet"
-        @keyup.space="executeShortCmd"
         @keyup.229="executeShortCmd"
         @keyup.32="executeShortCmd"
         @keydown.tab.prevent="executeShortCmd"
-        @keydown.alt.188.capture.prevent.stop="iteratePage"></div>
+        @keydown.alt.188.capture.prevent.stop="iteratePage"
+        @keyup.shift.55="activateCmdMode"
+        @keyup.esc="deactivateCmdMode"
+        v-on="this.cmdMode ? { keyup: trackCmd } : null">
+      </div>
+      <cmdbar
+        v-if="cmdMode" :text="currentCmd"
+        v-on:run-cmd="runCmdButton"
+      ></cmdbar>
+      <cmdbar-mobile
+        v-if="this.$root.mobileVersion && editMode && !cmdMode"
+        v-on:run-cmd-mobile="runCmdButtonMobile"
+      ></cmdbar-mobile>
     </div>
   `,
+  data: function() {
+    return {
+      editMode: false,
+      cmdMode: false,
+      cmdSlashPosition: null,
+      currentCmd: '',
+    }
+  },
   methods: {
+    activateEditMode() {
+      setTimeout(() => {
+        this.editMode = true
+      }, 301)
+    },
     iteratePage() {this.$emit('iterate-page')},
+    activateCmdMode() {
+      this.cmdMode = true
+      this.cmdSlashPosition = window.getSelection()['anchorOffset']
+    },
+    deactivateCmdMode() {
+      this.cmdMode = false
+      this.cmdSlashPosition = null
+      this.currentCmd = ''
+    },
+    trackCmd(event) {
+      if (this.cmdMode) {
+        var currentAnchorPosition = window.getSelection()['anchorOffset']
+        var currentText = event.target.innerText
+        if (currentAnchorPosition < this.cmdSlashPosition) {
+          this.deactivateCmdMode()
+        } else {
+          this.currentCmd = currentText.slice(this.cmdSlashPosition, currentAnchorPosition)
+        }
+      }
+    },
+    runCmd(cmdText) {
+      bulletCmds = ['h1', 'h2', 'todo', 'done', 'note', 'migrate', 'future',
+        'tab', 'empty']
+      if (bulletCmds.indexOf(cmdText) !== -1) {
+        if (cmdText === 'empty') {
+          this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: undefined})
+        } else {
+          this.$emit('change-bullet-style', {id: this.bullet.id, newStyle: cmdText})
+        }
+      } else if (cmdText === 'newcollup') {
+        this.$emit('add-collection', {currentBullet: this.bullet, place: 0})
+      } else if (cmdText === 'newcolldown') {
+        this.$emit('add-collection', {currentBullet: this.bullet, place: 1})
+      } else if (cmdText === 'nav') {
+        this.$emit('change-pagenav-visibility')
+      } else if (cmdText === 'sidebar') {
+        this.$emit('change-sidepage-visibility')
+      }
+    },
+    runCmdButton({cmdText}) {
+      // adjust text
+      console.log(this.currentCmd)
+      var currentAnchorPosition = this.cmdSlashPosition + this.currentCmd.length
+      var currentBulletText = this.bullet.text
+      var newText = currentBulletText.slice(0, this.cmdSlashPosition - 1) + currentBulletText.slice(currentAnchorPosition)
+      this.$emit('edit-bullet-text', {id: this.bullet.id, newText: newText})
+      this.$root.setEndOfContenteditable(this.$el.querySelector('.bullet-text'), this.cmdSlashPosition - 1)
+      // run cmd
+      this.runCmd(cmdText)
+    },
+    runCmdButtonMobile({cmdText}) {
+      // can't propperly set it back to actual position so set it to end
+      this.$root.setEndOfContenteditable(this.$el.querySelector('.bullet-text'), this.bullet.text.length)
+      this.runCmd(cmdText)
+    },
     edit(event) {
       // edit text after next tick, because if sidepage is closed with the cmd
       // /sidepage the bullet will not exist anymore to focus on. With the next
@@ -31,6 +111,10 @@ Vue.component('bullet', {
       this.$nextTick(() => {
         var newText = event.target.innerText
         this.$emit('edit-bullet-text', {id: this.bullet.id, newText: newText})
+        setTimeout(() => {
+          this.deactivateCmdMode()
+          this.editMode = false
+        }, 300)
       })
     },
     keepTextWithoutCmd(event, bullet, text, cmd) {
@@ -89,6 +173,8 @@ Vue.component('bullet', {
         this.changeStyle(event, this.bullet, currentText, "todo")
       } else if (currentText.includes("/empty")) {
         this.changeStyle(event, this.bullet, currentText, "empty")
+      } else if (currentText.includes("/tab")) {
+        this.changeStyle(event, this.bullet, currentText, "tab")
       } else if (currentText.includes("/note")) {
         this.changeStyle(event, this.bullet, currentText, "note")
       } else if (currentText.includes("/migrate")) {
@@ -106,8 +192,8 @@ Vue.component('bullet', {
       } else if (currentText.includes("/nav")) {
         this.keepTextWithoutCmd(event, this.bullet, currentText, "/nav")
         this.$emit('change-pagenav-visibility')
-      } else if (currentText.includes("/sidepage")) {
-        this.keepTextWithoutCmd(event, this.bullet, currentText, "/sidepage")
+      } else if (currentText.includes("/sidebar")) {
+        this.keepTextWithoutCmd(event, this.bullet, currentText, "/sidebar")
         this.$emit('change-sidepage-visibility')
       } else {
         this.$emit('add-bullet', {currentBullet: this.bullet, currentText: currentText})

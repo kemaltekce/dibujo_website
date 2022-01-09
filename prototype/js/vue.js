@@ -375,9 +375,9 @@ var app = new Vue({
     window.removeEventListener("resize", this.adjustPageWidth);
   },
   mounted() {
+    this.adjustPageWidth()
     this.focusFirstBullet()
     this.setBulletTabColor()
-    this.adjustPageWidth()
   },
   updated() {
     this.addDefaultBullet(this.page)
